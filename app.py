@@ -4,8 +4,10 @@ from converter import converts
 from flask import Flask
 from flask import jsonify
 from flask import request
+from flask_autodoc.autodoc import Autodoc
 
 app = Flask(__name__)
+auto = Autodoc(app)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -15,6 +17,7 @@ def index():
 
 
 @app.route('/api/v1.0/convert', methods=['GET'])
+@auto.doc()
 def convert():
     if 'f' in request.args:
         f = float(request.args['f'])
@@ -26,6 +29,10 @@ def convert():
         return jsonify({'c': c, 'f': f})
     else:
         return jsonify({'error': 'Missing parameter'})
+
+@app.route('/documentation')
+def documentation():
+  return auto.html()
 
 
 if __name__ == '__main__':
