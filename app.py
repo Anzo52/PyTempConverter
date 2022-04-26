@@ -1,15 +1,16 @@
 # API for converting between Fahrenheit and Celsius
 
-from pytemperature
+import pytemperature
 from flask import Flask
 from flask import jsonify
 from flask import request
-from flask_autodoc.autodoc import Autodoc
+from flask_selfdoc import Autodoc
 
 app = Flask(__name__)
 auto = Autodoc(app)
 
 @app.route('/', methods=['GET'])
+@auto.doc()
 def index():
     return '''<h1>API for converting between Fahrenheit and Celsius</h1>
 <p>/api/v1.0/convert?f=<i>fahrenheit</i>&c=<i>celsius</i></p>
