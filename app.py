@@ -1,6 +1,6 @@
 # API for converting between Fahrenheit and Celsius
 
-from converter import converts
+from pytemperature
 from flask import Flask
 from flask import jsonify
 from flask import request
@@ -21,11 +21,11 @@ def index():
 def convert():
     if 'f' in request.args:
         f = float(request.args['f'])
-        c = converts.f2c(f)
+        c = pytemperature.f2c(f)
         return jsonify({'f': f, 'c': c})
     elif 'c' in request.args:
         c = float(request.args['c'])
-        f = converts.c2f(c)
+        f = pytemperature.c2f(c)
         return jsonify({'c': c, 'f': f})
     else:
         return jsonify({'error': 'Missing parameter'})
