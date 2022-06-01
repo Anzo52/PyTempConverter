@@ -37,7 +37,7 @@ def documentation():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 # curl -i http://localhost:5000/api/v1.0/convert?f=32
